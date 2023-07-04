@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>USERS</title>
+        <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>ALL THE USERS ARE BELONG TO US!</h1>
+        <button hx-get="/users"
+            hx-trigger="click"
+            hx-target="#search-results"
+            hx-swap="outerHTML"
+        >
+            Click Me!
+            <img class="htmx-indicator" src="static/spinner.gif">
+        </button>
+        <div id="search-results"></div>
+    </body>
+</html>
+

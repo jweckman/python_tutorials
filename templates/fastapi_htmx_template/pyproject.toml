@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "fastapi-htmx-template"
+version = "0.1.0"
+description = ""
+authors = ["Joakim Weckman <joakim.weckman@gmail.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_htmx_template"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.99.1"
+uvicorn = "^0.22.0"
+sqlmodel = "^0.0.8"
+jinja2 = "^3.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
