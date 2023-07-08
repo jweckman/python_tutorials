@@ -12,6 +12,11 @@ fastapi = "^0.99.1"
 uvicorn = "^0.22.0"
 sqlmodel = "^0.0.8"
 jinja2 = "^3.1.2"
+leather = "^0.3.4"
+mypy = "^1.4.1"
+
+[tool.mypy]
+python_executable = "/home/joakim/.cache/pypoetry/virtualenvs/fastapi-htmx-template-1nxhqGRA-py3.11/bin/python"
 
 
 [build-system]

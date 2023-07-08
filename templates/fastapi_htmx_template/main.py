@@ -10,6 +10,8 @@ from sqlmodel import select, Session
 from fastapi_htmx_template.db import get_session, create_db_and_tables, populate_test_data
 from fastapi_htmx_template.models import User
 
+import leather
+
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI(default_response_class=HTMLResponse)
@@ -29,19 +31,27 @@ async def index(
 
 @app.get("/users/")
 async def read_users(
+        *,
+        session: Session = Depends(get_session),
+        request: Request,
+    ):
+    context = {
+        "request": request,
+        "users": session.exec(select(User)).all(),
+    }
+    sleep(1)
+    return templates.TemplateResponse("table_users.html", context)
+
+@app.get("/svg_chart")
+async def read_svg_chart(
         session: Session = Depends(get_session),
     ):
     users = session.exec(select(User)).all()
-    user_cols = ['id', 'name','birth_year','join_date']
-    html_table_rows = []
-    html_table_rows.append("<tr><th>{}</th><th>{}</th><th>{}</th><th>{}</th></tr>".format(*user_cols))
-    for u in users:
-        tr = ''.join([f"<td>{getattr(u, col)}</td>" for col in user_cols])
-        tr = f"<tr>{tr}</tr>"
-        html_table_rows.append(tr)
-    html = f"<html><head></head><body><table>{''.join(html_table_rows) or '<td>empty</td>'}</table></body></html>"
-    sleep(1)
-    return HTMLResponse(content=html, status_code=200)
+    data = [(u.id, u.id) for u in users]
+
+    chart = leather.Chart('Line')
+    chart.add_line(data)
+    return HTMLResponse(content=chart.to_svg(), status_code=200)
 
 if __name__ == "__main__":
     create_db_and_tables()

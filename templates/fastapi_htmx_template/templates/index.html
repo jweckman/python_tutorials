@@ -1,19 +1,35 @@
 <html>
-    <head>
-        <title>USERS</title>
-        <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1>ALL THE USERS ARE BELONG TO US!</h1>
-        <button hx-get="/users"
-            hx-trigger="click"
-            hx-target="#search-results"
-            hx-swap="outerHTML"
+  <head>
+    <title>USERS</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="container mx-auto">
+      <p class="font-sans text-center text-6xl subpixel-antialiased italic">ALL THE USERS ARE BELONG TO US!</p>
+      <div class="flex flex-row flex-auto">
+        <button class="self-center transition duration-500 ease-in-out bg-blue-500 hover:bg-blue-700 text-white font-bold m-2 px-4 rounded"
+          hx-get="/users"
+          hx-trigger="click"
+          hx-target="#search-results"
+          hx-swap="outerHTML"
+          hx-indicator="#indicator-users"
         >
-            Click Me!
-            <img class="htmx-indicator" src="static/spinner.gif">
+          Get users
         </button>
-        <div id="search-results"></div>
-    </body>
+        <button class="self-center transition duration-500 ease-in-out bg-blue-500 hover:bg-blue-700 text-white font-bold m-2 px-4 rounded"
+          hx-get="/svg_chart"
+          hx-trigger="click"
+          hx-target="#svg-results"
+          hx-swap="innerHTML"
+        >
+          Get svg
+        </button>
+        <img id="indicator-users" class="h-12 w-12 htmx-indicator" src="static/spinner.gif">
+      </div>
+      <div class="py-8" id="svg-results"></div>
+      <div id="search-results"></div>
+    </div>
+  </body>
 </html>
 

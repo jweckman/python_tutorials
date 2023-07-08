@@ -1,0 +1,13 @@
+<table class="border-collapse border-2 border-gray-500">
+  <tr>
+    <th class="border border-gray-400 px-4">Id</th><th>Name</th><th>Birth Year</th><th>Join Date</th>
+  </tr>
+  {% for u in users %}
+    <tr>
+      <td class="border border-gray-400 p-4 text-gray-800">{{u.id}}</td>
+      <td class="border border-gray-400 p-4 text-gray-800">{{u.name}}</td>
+      <td class="border border-gray-400 p-4 text-gray-800">{{u.birth_year}}</td>
+      <td class="border border-gray-400 p-4 text-gray-800">{{u.join_date}}</td>
+    </tr>
+  {% endfor %}
+</table>
